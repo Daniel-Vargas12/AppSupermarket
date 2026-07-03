@@ -47,17 +47,13 @@ public class Mapper {
 
         var detalle = v.getDetalle().stream().map( det -> 
             DetalleVentaDTO.builder()
-                .Id(det.getProd().getId())
-                .nombreProd(det.getProd().getNombre())
+                .idProducto(det.getProd().getId())
+                .nombreProd(det.getNombreProd())
                 .cantProd(det.getCantProd())
                 .precio(det.getPrecio())
-                .subtotal(det.getPrecio() * det.getCantProd())
+                .subtotal(det.getSubtotal())
                 .build()
         ).collect(Collectors.toList());
-
-        var total = detalle.stream()
-        .map(DetalleVentaDTO::getSubtotal)
-        .reduce(0.0, Double::sum);
 
         return VentaDTO.builder()
             .id(v.getId())
@@ -65,13 +61,9 @@ public class Mapper {
             .idSucursal(v.getSucursal().getId())
             .estado(v.getEstado())
             .detalle(detalle)
-            .total(total)
+            .total(v.getTotal())
             .build();
         
     }
-
-    
-
-
 
 }

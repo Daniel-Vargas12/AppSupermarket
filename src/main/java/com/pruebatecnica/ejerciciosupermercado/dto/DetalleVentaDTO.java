@@ -13,7 +13,7 @@ import lombok.Setter;
 @Builder
 public class DetalleVentaDTO {
 
-    private Long Id;
+    private Long idProducto;
     private String nombreProd;
     private Integer cantProd;
     //detalles extra
