@@ -47,20 +47,12 @@ public class VentaService implements IVentaService{
     @Transactional
     public VentaDTO crearVenta(VentaDTO ventaDto){
 
-        //verificar detalle, venta y sucursal
-        if(ventaDto==null) throw new RuntimeException("VentaDTO es null");
-        if(ventaDto.getIdSucursal()==null) {
-            throw new RuntimeException("Indica una sucursal");
-        }
-        if(ventaDto.getDetalle()==null || ventaDto.getDetalle().isEmpty()){
-            throw new RuntimeException("Debe incluir al menos un producto");
-        }
+        // Las validaciones de entrada se realizan mediante Bean Validation (@Valid)
 
         //buscar sucursal
-        Sucursal suc = sucursalRepo.findById(ventaDto.getIdSucursal()).orElse(null);
-        if(suc==null){
-            throw new NotFoundException("Sucursal no encontrada");
-        }
+        Sucursal suc = sucursalRepo.findById(ventaDto.getIdSucursal())
+                .orElseThrow(() ->
+                    new NotFoundException("Sucursal no encontrada"));
 
         //crear la venta
         Venta vent = new Venta();
@@ -77,8 +69,7 @@ public class VentaService implements IVentaService{
             Producto p = productoRepo.findById(detDTO.getIdProducto())
                 .orElseThrow(()->
                     new NotFoundException("Producto no encontrado"));
-            if(p == null)
-                {throw new RuntimeException("Producto no encontrado: " + detDTO.getNombreProd());}
+
 
             //verificar stock suficiente
             if(p.getCantidad()<detDTO.getCantProd()){
@@ -111,12 +102,10 @@ public class VentaService implements IVentaService{
         vent.setDetalle(detalles);
 
         //guardamos en la BD
-        vent=ventaRepo.save(vent);//trae el objeto actualizado con formato de la BD
+        vent=ventaRepo.save(vent);//trae el objeto actualizado con formato y datos de la BD
 
         //mapeo de salida
-        VentaDTO ventaSalida = Mapper.toDTO(vent);
-
-        return ventaSalida;
+        return Mapper.toDTO(vent);
     }
 
 

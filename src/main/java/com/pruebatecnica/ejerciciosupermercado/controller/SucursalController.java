@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pruebatecnica.ejerciciosupermercado.dto.SucursalDTO;
 import com.pruebatecnica.ejerciciosupermercado.service.ISucursalService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/sucursales")
 public class SucursalController {
@@ -30,14 +32,14 @@ public class SucursalController {
     }
 
     @PostMapping
-    public ResponseEntity<SucursalDTO> create(@RequestBody SucursalDTO dto){
+    public ResponseEntity<SucursalDTO> create( @Valid @RequestBody SucursalDTO dto){
         SucursalDTO created = sucursalService.crearSucursal(dto);
         return ResponseEntity.created(URI.create("/api/sucursales" + created.getId())).body(created);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<SucursalDTO> update(@PathVariable Long id, 
-                                                            @RequestBody SucursalDTO dto){
+                                                             @Valid @RequestBody SucursalDTO dto){
           return ResponseEntity.ok(sucursalService.actualizarSucursal(id, dto));                                                      
         }
 

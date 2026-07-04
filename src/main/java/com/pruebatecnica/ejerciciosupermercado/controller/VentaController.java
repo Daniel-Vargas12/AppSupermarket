@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pruebatecnica.ejerciciosupermercado.dto.VentaDTO;
 import com.pruebatecnica.ejerciciosupermercado.service.IVentaService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/ventas")
 public class VentaController {
@@ -30,14 +32,14 @@ public class VentaController {
     }
 
     @PostMapping
-    public ResponseEntity<VentaDTO> create(@RequestBody VentaDTO dto){
+    public ResponseEntity<VentaDTO> create( @Valid @RequestBody VentaDTO dto){
         VentaDTO created = ventaService.crearVenta(dto);
         return ResponseEntity.created(URI.create("/api/ventas" +created.getId()))
             .body(created);
     }
 
     @PutMapping("/{id}")
-    public VentaDTO actualizar(@PathVariable Long id, @RequestBody VentaDTO dto){
+    public VentaDTO actualizar(@PathVariable Long id, @Valid @RequestBody VentaDTO dto){
         return ventaService.actualizarVenta(id, dto);
     }
 

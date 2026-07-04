@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pruebatecnica.ejerciciosupermercado.dto.ProductoDTO;
 import com.pruebatecnica.ejerciciosupermercado.service.IProductoService;
 
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,7 +38,7 @@ public class ProductoController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductoDTO> crearProducto(@RequestBody ProductoDTO dto){
+    public ResponseEntity<ProductoDTO> crearProducto( @Valid @RequestBody ProductoDTO dto){
         ProductoDTO creado = productoService.crearProducto(dto);
 
         return ResponseEntity.created(URI.create("/api/productos" + creado.getId())).body(creado);
@@ -44,7 +46,7 @@ public class ProductoController {
 
     @PutMapping("/{id}")
     public ResponseEntity<ProductoDTO> actualizarProducto(@PathVariable Long id, 
-                                                            @RequestBody ProductoDTO dto){
+                                                             @Valid @RequestBody ProductoDTO dto){
           return ResponseEntity.ok(productoService.actualizarProducto(id, dto));                                                      
         }
 
