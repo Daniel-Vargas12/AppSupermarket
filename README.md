@@ -4,7 +4,7 @@ API REST desarrollada con Java y Spring Boot para la gestión de un supermercado
 
 ---
 
-## 🚀 Tecnologías utilizadas
+## Tecnologías utilizadas
 
 - Java 17
 - Spring Boot
@@ -15,7 +15,7 @@ API REST desarrollada con Java y Spring Boot para la gestión de un supermercado
 
 ---
 
-## 📂 Arquitectura del proyecto
+##  Arquitectura del proyecto
 
 El proyecto está organizado siguiendo una arquitectura por capas:
 
@@ -42,7 +42,7 @@ Cada capa tiene una responsabilidad específica:
 
 ---
 
-## 📋 Funcionalidades
+##  Funcionalidades
 
 - Gestión de sucursales.
 - Gestión de productos.
@@ -53,7 +53,7 @@ Cada capa tiene una responsabilidad específica:
 
 ---
 
-## 🗄️ Modelo de datos
+##  Modelo de datos
 
 El proyecto utiliza las siguientes entidades:
 
@@ -64,7 +64,7 @@ El proyecto utiliza las siguientes entidades:
 
 ---
 
-## ▶️ Ejecución del proyecto
+##  Ejecución del proyecto
 
 ### Requisitos
 
@@ -104,7 +104,7 @@ http://localhost:8080
 
 ---
 
-## 🐳 Contenedores
+##  Contenedores
 
 El proyecto utiliza dos servicios:
 
@@ -133,7 +133,7 @@ Docker Compose crea automáticamente:
 
 ---
 
-## 📖 Características técnicas
+##  Características técnicas
 
 - Arquitectura por capas.
 - Uso de DTOs para desacoplar la API de las entidades.
@@ -144,7 +144,7 @@ Docker Compose crea automáticamente:
 
 ---
 
-## 👨‍💻 Autor
+##  Autor
 
 **Joan Daniel Vargas Avila**
 
